@@ -1,0 +1,27 @@
+<p>servers works!</p>
+
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+<p>{{serverName}}</p>
+
+<button class='btn btn-primary' [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
+<!--<p>{{serverCreationStatus}}</p>-->
+<p *ngIf="serverCreated, else noServer">Server is created! Name is: {{serverName}}</p>
+<ng-template #noServer>
+    <p>No Server created!</p>
+</ng-template>
+
+<app-server *ngFor="let server of servers"></app-server>
+
+
+<input type="text" class="form-control" [(ngModel)]="username" />
+<p>{{ username }}</p>
+<button class="btn btn-primary" [disabled]="username === ''" (click)="username = ''">Reset Username</button>
+
+
+<button class="btn btn-primary" (click)="onToggleDetails()">Display Details</button>
+<p *ngIf="showParagraph">Secret Code = 1111</p>
+<div *ngFor="let logItem of log; let i=index" [ngStyle]="{'background-color': i >=5 ? 'blue' : 'transparent'}"
+    [ngClass]="{'assignment': i>=5}">
+    {{logItem}}
+</div>
